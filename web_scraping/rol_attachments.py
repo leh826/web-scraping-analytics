@@ -42,4 +42,4 @@ if files_pdfs:
             zipf.write(file, os.path.basename(file))
     print(f"File zip em: {name_zip}")
 else:
-    print("Nove PDF download.")
+    print("None PDF download.")
