@@ -19,10 +19,10 @@ for a_tag in soup.find_all('a', href=True):
 
 # Baixa os 2 ultimos anos
 years.sort(reverse=True)
-anos_para_baixar = years[:2]
+years_to_download = years[:2]
 
 #baixa os arquivos
-for ano in anos_para_baixar:
+for ano in years_to_download:
     url_ano = f"{url_base}{ano}/"
     page_ano = requests.get(url_ano)
     soup_ano = BeautifulSoup(page_ano.content, 'html.parser')
