@@ -43,3 +43,8 @@ if files_pdfs:
     print(f"File zip em: {name_zip}")
 else:
     print("None PDF download.")
+
+# Salva uma lista de PDFs para usar no processamneto 
+with open(os.path.join( "pdf_list.txt"), "w") as f:
+    for pdf_path in files_pdfs:
+        f.write(pdf_path + "\n")
