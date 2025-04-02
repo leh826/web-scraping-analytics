@@ -29,9 +29,9 @@ for a_tag in data_page.find_all('a', attrs={"data-mce-href": True, "href": True}
             with open(name_file, "wb") as file:
                 file.write(response.content)
             files_pdfs.append(name_file)
-            print(f"Download complete: {name_file}")
+            print(f"Download completo: {name_file}")
         else:
-            print(f"Download Error: {url_pdf}")
+            print(f"Erro no download: {url_pdf}")
 
 # Compactando todos os PDFs
 if files_pdfs:
@@ -42,7 +42,7 @@ if files_pdfs:
             zipf.write(file, os.path.basename(file))
     print(f"File zip em: {name_zip}")
 else:
-    print("None PDF download.")
+    print("Nenhum Pdf baixado.")
 
 # Salvando uma lista com os PDFs 
 with open(os.path.join( "pdf_list.txt"), "w") as f:

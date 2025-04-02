@@ -38,8 +38,8 @@ for year in years_to_download:
             if response.status_code == 200:
                 with open(name_file, "wb") as file:
                     file.write(response.content)
-                print(f"Download completed: {name_file}")
+                print(f"Download completo: {name_file}")
             else:
-                print(f"Download Error: {url_zip}")
+                print(f"Erro no download: {url_zip}")
 
 print("Download done!")
