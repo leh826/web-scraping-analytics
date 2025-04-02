@@ -1,4 +1,16 @@
 services:
+  web:
+  build: .
+  image: leticiasouza/web:latest
+  container_name: web_analytics
+  depends_on:
+      - db
+  env_file: .env
+  ports:    
+   - "8000:8000"
+  volumes:
+    - .:/app
+
   db:
     image: postgres:15
     container_name: postgres_python

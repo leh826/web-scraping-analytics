@@ -22,7 +22,7 @@ def get_db_connection():
 def listar_operadoras():
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM operadoras")
+    cur.execute("SELECT * FROM ans_operadoras")
     data = cur.fetchall()
     cur.close()
     conn.close()
