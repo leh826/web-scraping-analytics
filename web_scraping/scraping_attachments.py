@@ -10,10 +10,10 @@ data_page = BeautifulSoup(page.content, 'html.parser')
 # uids dos links desejados
 uids = ["f710899c6c7a485ea62a1acc75d86c8c", "85adaa3de5464d8aadea11456bfb4f94"]
 
-folder_pdfs = "pdfs"
+folder_pdfs = "data\pdfs"
 os.makedirs(folder_pdfs, exist_ok=True)
 
-# Lista para armazenar os caminhos dos PDFs baixados
+#armazenando os caminhos dos PDFs baixados
 files_pdfs = []
 
 for a_tag in data_page.find_all('a', attrs={"data-mce-href": True, "href": True}):
@@ -33,7 +33,7 @@ for a_tag in data_page.find_all('a', attrs={"data-mce-href": True, "href": True}
         else:
             print(f"Download Error: {url_pdf}")
 
-# Compacta todos os PDFs
+# Compactando todos os PDFs
 if files_pdfs:
 
     name_zip = os.path.join(folder_pdfs,"files_pdfs.zip")
@@ -44,7 +44,7 @@ if files_pdfs:
 else:
     print("None PDF download.")
 
-# Salva uma lista de PDFs para usar no processamneto 
+# Salvando uma lista com os PDFs 
 with open(os.path.join( "pdf_list.txt"), "w") as f:
     for pdf_path in files_pdfs:
         f.write(pdf_path + "\n")

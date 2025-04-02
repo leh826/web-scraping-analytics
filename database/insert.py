@@ -29,4 +29,4 @@ def insert_data(csv_file):
     print("Dados inseridos com sucesso!")
 
 if __name__ == "__main__":
-    insert_data("csv/transformed_data.csv")
+    insert_data("data/csv/transformed_data.csv")

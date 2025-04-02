@@ -4,7 +4,7 @@ import os
 
 url = "https://dadosabertos.ans.gov.br/FTP/PDA/operadoras_de_plano_de_saude_ativas/"
 
-folder_csv = "csv"
+folder_csv = "data\csv"
 os.makedirs(folder_csv, exist_ok=True)
 
 response = requests.get(url)

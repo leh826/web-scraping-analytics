@@ -1,7 +1,7 @@
 import pandas as pd
 
 def transform_data(input_file, output_file):
-    # Especifica todas as colunas que você quer forçar a serem lidas como string
+    # Especifica todas as colunas a serem lidas como string
     dtype_spec = {
         "Registro_ANS": str,
         "CNPJ": str,
@@ -36,7 +36,7 @@ def transform_data(input_file, output_file):
     print("Transformação concluída. Dados salvos em:", output_file)
 
 if __name__ == "__main__":
-    transform_data("csv/Relatorio_cadop.csv", "csv/transformed_data.csv")
+    transform_data("data/csv/Relatorio_cadop.csv", "data/csv/transformed_data.csv")
 
 
     

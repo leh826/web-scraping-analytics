@@ -10,10 +10,10 @@ with open("database/schema.sql", "r") as file:
 
 # 2. Transformar o CSV
 print("Processando CSV...")
-transform_data("csv/Relatorio_cadop.csv", "csv/transformed_data.csv")
+transform_data("data/csv/Relatorio_cadop.csv", "data/csv/transformed_data.csv")
 
 # 3. Inserir os dados no banco
 print("Inserindo dados...")
-insert_data("csv/transformed_data.csv")
+insert_data("data/csv/transformed_data.csv")
 
 print("Processo concluído!")
