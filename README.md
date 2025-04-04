@@ -53,6 +53,29 @@ source venv/bin/activate
 ```bash
 .venv\Scripts\activate
 ```
+### 📌 Instalando Dependências
+#### 🔹 Python (Web Scraping, Transformação e API)
+```bash
+pip install -r requirements.txt
+```
+#### 🔹 Vue.js (Frontend)
+```bash
+cd frontend
+npm install
+```
+
+### Execução de Scripts 
+## Teste 1
+1. Na pasta `WebScraping` execute o arquivo scraping-attachement para que seja baixado os anexo.
+
+2. Na pasta data-transformtion execute o arquivo extract-data, para extrair os dados do anexo 1.
+
+## Teste 2
+1. Na pasta `WebScraping` execute o arquivo scraping-contabilidade para que seja baixado os arquivos.
+
+2. Na pasta data-transformtion execute o arquivo extract-csv-zip, para extrair os dados do site.
+
+3. No main_contability execute o arquivo para que seja criada a tabela dados_financeiros e agrupado os arquivos csv.
 
 ##  Configuração do Banco de Dados
 ### 🔹Requisitos Mínimos
@@ -127,3 +150,4 @@ Este projeto é privado e de uso restrito.
 
 ---
 📌 **Desenvolvido por [Letícia Souza]** 📌 Desafio Técnico 
+#
