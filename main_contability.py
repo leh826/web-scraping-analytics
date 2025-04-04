@@ -14,8 +14,4 @@ with open("database/Queries/finance.sql", "r") as file:
 print("Processando arquivos financeiros...")
 process_csv_for_postgres()
 
-# 3. Inserir os dados transformados no banco de dados
-print("Inserindo dados financeiros...")
-insert_financial_data("data/csv/adjusted_data.csv")
-
-print("Processo concluído!")
+print("Arquivo gerado e tabelas criadas com sucesso!")
