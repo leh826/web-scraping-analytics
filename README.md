@@ -75,9 +75,8 @@ Na pasta data-transformtion execute o arquivo extract-data, para extrair os dado
 
 ## Teste 3
 1. Na pasta `WebScraping` execute o arquivo scraping-contabilidade para que seja baixado os arquivos.
-2. Na pasta data-transformtion execute o arquivo extract-csv-zip, para extrair os dados do site.
-3. Execute o main_contability para que seja criada a tabela dados_financeiros e agrupado os arquivos csv.
-4. Execute o main para ser criado a tabela ans_operados, tranformado os dados e inseridos.
+2. Execute o main_contability para que seja criada a tabela dados_financeiros e agrupado os arquivos csv.
+3. Execute o main para ser criado a tabela ans_operados, tranformado os dados e inseridos.
 
 ##  Configuração do Banco de Dados
 ### 🔹Requisitos Mínimos
