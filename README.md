@@ -8,10 +8,13 @@ Este projeto implementa soluções de **Web Scraping, Transformação de Dados, 
 ├── web_scraping/          # Código para download e compactação dos anexos
 ├── data_transformation/   # Extração, transformação e salvamento dos dados
 ├── database/              # Scripts SQL para estruturação e análise de dados
+       ├── queries         #Consultas sql
 ├── data/                  # Dados extraídos e transformados
 ├── api/                   # Backend FastAPI para consultas via API
 ├── frontend/              # Aplicação Vue.js para interface gráfica
-├── tests/                 # Testes automatizados
+├──evidencias              #evidências do funcionamento de cada modulo
+├── main.py
+├── main_contability.py 
 └── README.md              # Documentação
 ```
 
@@ -47,7 +50,6 @@ python -m venv .venv
 ```bash
 source venv/bin/activate
 ```
-
 - Windows:
 
 ```bash
@@ -92,14 +94,14 @@ DB_NAME= ans_operadoras
 DB_USER=seu_usuario
 DB_PASSWORD=sua_senha
 ```
-### Rode o docker compose
+### 🔹Rode o docker compose
 ```bash
 docker-compose up -d
 ```
-### Acesse o pgAdmin
+### 🔹Acesse o pgAdmin
 Pela URL `https://localhost:5050` você pode acessar o pgAdmin e visualizar o banco de dados
 
-### Importação de arquivos
+### 🔹Importação de arquivos
 Dentro do PgAdmin exporte o arquivo csv `adjusted_data.csv` na tabela `dados_financeiros` gerado nas execuções dos scripts.
 
 ## Execução do Projeto
@@ -117,35 +119,13 @@ npm run dev
 ```
 
 ## 📊 Consultas no Banco de Dados
-- **Maiores despesas no último trimestre**:
-```sql
-SELECT operadora, SUM(valor) AS total
-FROM despesas
-WHERE categoria = 'ASSISTÊNCIA MÉDICO-HOSPITALAR'
-AND data BETWEEN CURRENT_DATE - INTERVAL '3 months' AND CURRENT_DATE
-GROUP BY operadora
-ORDER BY total DESC
-LIMIT 10;
-```
-- **Maiores despesas no último ano**:
-```sql
-SELECT operadora, SUM(valor) AS total
-FROM despesas
-WHERE categoria = 'ASSISTÊNCIA MÉDICO-HOSPITALAR'
-AND data BETWEEN CURRENT_DATE - INTERVAL '1 year' AND CURRENT_DATE
-GROUP BY operadora
-ORDER BY total DESC
-LIMIT 10;
-```
+1. Na pasta `/database/queries` possuem consultas para serem executadas no PGAdmin.
+2. Na pasta `evidência` contém prints de comprovação do funcionamento do projeto.
 
 ## 🚀 Diferenciais Implementados
-✅ Melhorias de performance (uso de indexação SQL e processamento assíncrono)
 ✅ Arquitetura modular e bem estruturada
 ✅ Controle de versão com Git
 ✅ Infraestrutura conternizada 
-
-## 📄 Licença
-Este projeto é privado e de uso restrito.
 
 ---
 📌 **Desenvolvido por [Letícia Souza]** 📌 Desafio Técnico 
