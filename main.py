@@ -1,4 +1,3 @@
-import os
 from data_transformation.transform_data_register import transform_data
 from database.connection import execute_query
 from database.insert import insert_data
