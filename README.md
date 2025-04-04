@@ -127,7 +127,7 @@ npm run dev
 1. Na pasta `/database/queries` possuem consultas para serem executadas no PGAdmin.
 2. Na pasta `evidência` contém prints de comprovação do funcionamento do projeto.
 
-# Coleção Postman
+## Coleção Postman
 Teste o endpoint da API em: `/intitivecare/collection/l8vndiq/endpoints?action=share&creator=39885622`
 
 ## 🚀 Diferenciais Implementados
