@@ -5,7 +5,7 @@ from database.insert import insert_data
 
 # 1. Criar as tabelas no banco
 print("Criando tabelas...")
-with open("database/schema.sql", "r") as file:
+with open("database/Queries/schema.sql", "r") as file:
     execute_query(file.read())
 
 # 2. Transformar o CSV

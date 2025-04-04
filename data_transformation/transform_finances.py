@@ -1,61 +1,67 @@
-# import os
-# import csv
-# from datetime import datetime
-# def format_value(value, is_numeric=False):
-#     """ Formata valores removendo espaços e convertendo para o formato correto. """
-#     value = value.strip().replace('"', '')  # Remove espaços extras e aspas
-#     if is_numeric:
-#         return value.replace(',', '.') if value else '0.00'  # Converte para formato decimal
-#     return value
-
-# def process_csv_for_postgres(csv_folder, output_file):
-#     with open(output_file, 'w', encoding='utf-8') as sql_file:
-#         sql_file.write("CREATE TABLE IF NOT EXISTS contabilidade (\n")
-#         sql_file.write("    data DATE,\n")
-#         sql_file.write("    reg_ans VARCHAR(10),\n")
-#         sql_file.write("    cd_conta_contabil VARCHAR(20),\n")
-#         sql_file.write("    descricao TEXT,\n")
-#         sql_file.write("    vl_saldo_inicial NUMERIC(15,2),\n")
-#         sql_file.write("    vl_saldo_final NUMERIC(15,2)\n");
-#         sql_file.write(");\n\n")
-        
-#         for file in os.listdir(csv_folder):
-#             if file.endswith(".csv"):
-#                 csv_path = os.path.join(csv_folder, file)
-#                 with open(csv_path, newline='', encoding='utf-8') as csv_file:
-#                     reader = csv.reader(csv_file, delimiter=';')
-#                     next(reader) 
-#                     for row in reader:
-#                         data = datetime.strptime(format_value(row[0]), "%Y-%m-%d").date()
-#                         reg_ans = format_value(row[1])
-#                         cd_conta_contabil = format_value(row[2])
-#                         descricao = format_value(row[3])
-#                         vl_saldo_inicial = format_value(row[4], is_numeric=True)
-#                         vl_saldo_final = format_value(row[5], is_numeric=True)
-#                         sql_file.write(
-#                             f"INSERT INTO contabilidade VALUES ('{data}', '{reg_ans}', '{cd_conta_contabil}', "
-#                             f"'{descricao}', {vl_saldo_inicial}, {vl_saldo_final});\n"
-#                         )
-
-# destination_folder = "database"
-# output_sql = "finance.sql"
-
-# process_csv_for_postgres(destination_folder, output_sql)
-
+import os
 import pandas as pd
+import re
 
-# Carregar o arquivo CSV
-dados = pd.read_csv('seuarquivo.csv', delimiter=";", encoding="utf-8") #ajustar para ler a pasta
-# Converter a coluna "DATA" para o tipo Date
-dados['DATA'] = pd.to_datetime(dados['DATA'], errors='coerce')
+def process_csv_for_postgres():
+    # Caminho onde os arquivos CSV estão armazenados
+    caminho_pasta = "data/csv"
 
-# Converter colunas numéricas para o formato correto (NUMERIC(15,2))
-dados['VL_SALDO_INICIAL'] = pd.to_numeric(dados['VL_SALDO_INICIAL'], errors='coerce')
-dados['VL_SALDO_FINAL'] = pd.to_numeric(dados['VL_SALDO_FINAL'], errors='coerce')
+    # Listar todos os arquivos na pasta
+    arquivos_csv = [arquivo for arquivo in os.listdir(caminho_pasta) if arquivo.endswith(".csv")]
 
-# Converter colunas para VARCHAR
-dados['REG_ANS'] = dados['REG_ANS'].astype(str)
-dados['CD_CONTA_CONTABIL'] = dados['CD_CONTA_CONTABIL'].astype(str)
+    # Filtrar apenas os arquivos que começam com um número
+    arquivos_filtrados = [arquivo for arquivo in arquivos_csv if re.match(r"^\d", arquivo)]
 
-# Salvar em um novo arquivo CSV
-dados.to_csv('dados_ajustados.csv', index=False, sep=",", encoding="utf-8", quotechar='"')
+    # Lista para armazenar DataFrames
+    df_lista = []
+
+    # Ler e transformar os arquivos filtrados
+    for arquivo in arquivos_filtrados:
+        caminho_arquivo = os.path.join(caminho_pasta, arquivo)
+        
+        dtype_spec = {
+            "REG_ANS": str,
+            "CD_CONTA_CONTABIL": str,
+            "DESCRICAO": str,
+        }
+
+        # Carregar o arquivo CSV
+        df = pd.read_csv(caminho_arquivo, delimiter=";", encoding="utf-8", dtype=dtype_spec)
+
+        # Converter a coluna "DATA" para o tipo Date
+        df["DATA"] = pd.to_datetime(df["DATA"], errors="coerce")
+
+        # Converter colunas numéricas (garantindo que valores inválidos sejam convertidos para 0.0)
+        df["VL_SALDO_INICIAL"] = (
+            df["VL_SALDO_INICIAL"]
+            .astype(str)
+            .str.replace(",", ".", regex=True)
+            .replace("", "0")  # Substituir valores vazios por "0"
+            .astype(float)
+        )
+        
+        df["VL_SALDO_FINAL"] = (
+            df["VL_SALDO_FINAL"]
+            .astype(str)
+            .str.replace(",", ".", regex=True)
+            .replace("", "0")  # Substituir valores vazios por "0"
+            .astype(float)
+        )
+
+        # Converter colunas para string (VARCHAR no banco)
+        df["REG_ANS"] = df["REG_ANS"].astype(str)
+        df["CD_CONTA_CONTABIL"] = df["CD_CONTA_CONTABIL"].astype(str)
+        
+        # Adicionar DataFrame à lista
+        df_lista.append(df)
+
+    # Concatenar todos os DataFrames em um único DataFrame consolidado
+    df_final = pd.concat(df_lista, ignore_index=True)
+
+    # Exibir as primeiras linhas do DataFrame consolidado
+    print(df_final.head())
+
+    # Opcional: Salvar os dados ajustados em um novo CSV
+    df_final.to_csv("data/csv/adjusted_data.csv", index=False, encoding="utf-8", sep=",", quotechar='"')
+
+    print("Arquivo processado e salvo com sucesso!")

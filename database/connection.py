@@ -23,5 +23,5 @@ def execute_query(query):
     print("Query executada com sucesso!")
 
 if __name__ == "__main__":
-    with open("database/schema.sql", "r") as file:
+    with open("database/Queries/schema.sql", "r") as file:
         execute_query(file.read())

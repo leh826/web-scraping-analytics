@@ -22,7 +22,7 @@ for a_tag in data_page.find_all('a', attrs={"data-mce-href": True, "href": True}
         
         # Obtém o nome do arquivo
         name_file = os.path.join(folder_pdfs, os.path.basename(url_pdf))     
-        # Faz o download do PDF
+
         response = requests.get(url_pdf)
 
         if response.status_code == 200:
