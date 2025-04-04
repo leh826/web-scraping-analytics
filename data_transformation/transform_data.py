@@ -1,8 +1,5 @@
-import pandas as pd
-import numpy as np
 import zipfile
 import os
-import shutil
 
 def extract_csv_from_zip(source_folder, destination_folder):
     os.makedirs(destination_folder, exist_ok=True)
