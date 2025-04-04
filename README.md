@@ -77,110 +77,11 @@ npm install
 
 3. No main_contability execute o arquivo para que seja criada a tabela dados_financeiros e agrupado os arquivos csv.
 
-
-### 🔹 Configuração do Banco de Dados
-1. Instale o Docker.
-2. Crie um banco de dados e importe os arquivos CSV com os scripts em `database/`.
-3. Ajuste as credenciais no arquivo `.env`.
-
-### 🔹 Executando a API
-```bash
-cd api
-uvicorn main:app --reload
-```
-
-### 🔹 Executando o Frontend
-```bash
-cd frontend
-npm run dev
-```
-
-## 📊 Consultas no Banco de Dados
-- **Maiores despesas no último trimestre**:
-```sql
-SELECT operadora, SUM(valor) AS total
-FROM despesas
-WHERE categoria = 'ASSISTÊNCIA MÉDICO-HOSPITALAR'
-AND data BETWEEN CURRENT_DATE - INTERVAL '3 months' AND CURRENT_DATE
-GROUP BY operadora
-ORDER BY total DESC
-LIMIT 10;
-```
-- **Maiores despesas no último ano**:
-```sql
-SELECT operadora, SUM(valor) AS total
-FROM despesas
-WHERE categoria = 'ASSISTÊNCIA MÉDICO-HOSPITALAR'
-AND data BETWEEN CURRENT_DATE - INTERVAL '1 year' AND CURRENT_DATE
-GROUP BY operadora
-ORDER BY total DESC
-LIMIT 10;
-```
-
-## 📌 Testes
-### 🔹 Testes de Unidade e Integração
-Para rodar os testes:
-```bash
-pytest tests/
-```
-
-## 🚀 Diferenciais Implementados
-✅ Testes automatizados# 📌 Desafio Técnico - Testes de Nivelamento v.250321
-
-## 📖 Sobre o Projeto
-Este projeto implementa soluções para os testes de **Web Scraping, Transformação de Dados, Banco de Dados e API** propostos no desafio técnico. A aplicação é dividida em módulos independentes, cada um utilizando tecnologias adequadas para melhor desempenho e organização.
-
-## 🏗 Estrutura do Projeto
-```
-├── web_scraping/          # Código para download e compactação dos anexos
-├── data_transformation/   # Extração, transformação e salvamento dos dados
-├── database/              # Scripts SQL para estruturação e análise de dados
-├── data/ 
-├── api/                   # Backend Flask/FastAPI para consultas via API
-├── frontend/              # Aplicação Vue.js para interface gráfica
-├── tests/                 # Testes automatizados
-└── README.md              # Documentação
-```
-
-## 🚀 Tecnologias Utilizadas
-### 🔹 Web Scraping
-- **Python**: `requests`, `BeautifulSoup`, `PyMuPDF`
-
-### 🔹 Transformação de Dados
-- **Python**: `pandas`, `PyMuPDF`
-
-### 🔹 Banco de Dados
--  **PostgreSQL 10+**
-- Ferramentas: `psycopg2`
-
-### 🔹 API
-- **FastAPI** (Python)
-- **Vue.js** (Frontend)
-
-## 🔧 Configuração e Instalação
-### 📥 Clonando o Repositório
-```bash
-git clone https://github.com/seu-usuario/desafio-tecnico.git
-cd desafio-tecnico
-```
-
-### 📌 Instalando Dependências
-#### 🔹 Python (Web Scraping, Transformação e API)
-```bash
-pip install -r requirements.txt
-```
-#### 🔹 Vue.js (Frontend)
-```bash
-cd frontend
-npm install
-```
-
 ##  Configuração do Banco de Dados
 ### 🔹Requisitos Mínimos
  Certifique-se de que sua máquina atenda aos seguintes requisitos:
-- Docker instalado (versão mais recente preferível).
-- Docker Compose instalado.
-- Espaço em disco suficiente para armazenar os dados do banco de dados e arquivos CSV.
+1  - Docker instalado (versão mais recente preferível).
+2 - Docker Compose instalado.
 
 ### 🔹Crie um Arquivo `.env`
 Crie um arquivo `.env` na raiz do projeto contendo as seguintes variáveis:
@@ -238,15 +139,7 @@ ORDER BY total DESC
 LIMIT 10;
 ```
 
-## 📌 Testes
-### 🔹 Testes de Unidade e Integração
-Para rodar os testes:
-```bash
-pytest tests/
-```
-
 ## 🚀 Diferenciais Implementados
-✅ Testes automatizados
 ✅ Melhorias de performance (uso de indexação SQL e processamento assíncrono)
 ✅ Arquitetura modular e bem estruturada
 ✅ Controle de versão com Git
@@ -257,3 +150,4 @@ Este projeto é privado e de uso restrito.
 
 ---
 📌 **Desenvolvido por [Letícia Souza]** 📌 Desafio Técnico 
+#
