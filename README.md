@@ -92,13 +92,18 @@ DB_PORT=5432
 DB_NAME= ans_operadoras
 DB_USER=seu_usuario
 DB_PASSWORD=sua_senha
+
+PGADMIN_DEFAULT_EMAIL= email_de_acesso
+PGADMIN_DEFAULT_PASSWORD=senha_de_acesso
 ```
 ### 🔹Rode o docker compose
 ```bash
 docker-compose up -d
 ```
 ### 🔹Acesse o pgAdmin
-Pela URL `https://localhost:5050` você pode acessar o pgAdmin e visualizar o banco de dados
+Pela URL `https://localhost:5050` você pode acessar o pgAdmin, no seu login:
+- Insira seu email_de_acesso
+- Insira sua senha_de_acesso
 
 ### 🔹Importação de arquivos
 Dentro do PgAdmin exporte o arquivo csv `adjusted_data.csv` na tabela `dados_financeiros` gerado nas execuções dos scripts.
