@@ -2,7 +2,6 @@ from data_transformation.extract_csv_zip import extract_csv_from_zip
 from data_transformation.transform_finances import process_csv_for_postgres
 from database.connection import execute_query
 
-
 print("Extraindo dados dos zips..")
 extract_csv_from_zip()
 
