@@ -9,18 +9,14 @@ zip_filename = "Teste_Leticia.zip"
 folder_pdfs = "pdfs"
 pdf_list_path = os.path.join(folder_pdfs, "pdf_list.txt")
 
-#verificações de possiveis erros
 if not os.path.exists(pdf_list_path):
     raise FileNotFoundError("Arquivo pdf_list.txt não encontrado.")
 
-#procura nome 1 em pdf_list.txt
 with open(pdf_list_path, "r", encoding="utf-8") as file:
     first_pdf_name = file.readline().strip()
 
-#determina o caminho
 pdf_path = os.path.join(first_pdf_name)
 
-# verificação de possivel erro
 if not os.path.exists(pdf_path):
     raise FileNotFoundError(f"O arquivo PDF {first_pdf_name} não foi encontrado no diretório {folder_pdfs}.")
 
@@ -42,7 +38,6 @@ def extract_table_from_pdf(pdf_path):
                             data.append(row)
     return data
 
-#extração dos dados
 data = extract_table_from_pdf(pdf_path)
 
 df = pd.DataFrame(data)
