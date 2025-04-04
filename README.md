@@ -57,9 +57,8 @@ source venv/bin/activate
 ##  Configuração do Banco de Dados
 ### 🔹Requisitos Mínimos
  Certifique-se de que sua máquina atenda aos seguintes requisitos:
-- Docker instalado (versão mais recente preferível).
-- Docker Compose instalado.
-- Espaço em disco suficiente para armazenar os dados do banco de dados e arquivos CSV.
+1  - Docker instalado (versão mais recente preferível).
+2 - Docker Compose instalado.
 
 ### 🔹Crie um Arquivo `.env`
 Crie um arquivo `.env` na raiz do projeto contendo as seguintes variáveis:
@@ -117,15 +116,7 @@ ORDER BY total DESC
 LIMIT 10;
 ```
 
-## 📌 Testes
-### 🔹 Testes de Unidade e Integração
-Para rodar os testes:
-```bash
-pytest tests/
-```
-
 ## 🚀 Diferenciais Implementados
-✅ Testes automatizados
 ✅ Melhorias de performance (uso de indexação SQL e processamento assíncrono)
 ✅ Arquitetura modular e bem estruturada
 ✅ Controle de versão com Git
