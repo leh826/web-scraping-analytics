@@ -119,6 +119,7 @@ uvicorn main:app --reload
 ### 🔹 Executando o Frontend
 ```bash
 cd frontend
+cd ans-analytics
 npm run dev
 ```
 
